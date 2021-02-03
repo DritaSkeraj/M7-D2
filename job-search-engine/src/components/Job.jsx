@@ -1,7 +1,8 @@
 import { Row, Col } from "react-bootstrap";
 import "../styles/Job.css";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import JobDetail from './JobDetail'
+import {ImStarEmpty} from 'react-icons/im'
 
 function Job(props) {
   return (
@@ -15,7 +16,9 @@ function Job(props) {
         </Col>
         <Col>
           <Row>
+            <Link to={`/jobDetails/${props.id}`}>
             <h6>{props.role}</h6>
+            </Link>
           </Row>
           <Row>
             <Col xs={10}>
@@ -28,6 +31,9 @@ function Job(props) {
               </p>
             </Col>
           </Row>
+        </Col>
+        <Col xs={2}>
+          <ImStarEmpty style={{'margin': '1em', 'color': 'rgb(50, 76, 83)', 'fontSize': '2em', 'textAlign': 'right'}}/>
         </Col>
       </Row>
     </div>

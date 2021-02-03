@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import {withRouter} from 'react-router-dom';
+import MyHeader from "./MyHeader";
 
 class JobDetail extends Component {
   state = {
@@ -8,24 +9,26 @@ class JobDetail extends Component {
   };
 
   componentDidMount(id) {
-    axios.get(`/positions/241a62bb-3a28-476c-85c0-f9b19b7c3f49.json`)
+    axios.get(`/positions/${this.props.match.params.id}.json`)
       .then((res) => {
         console.log("RESSSSSSSSSSSSS ", res)
         this.setState({ job: res.data})
       });
-    
+    console.log('jjob detail params*********************', this.props.match.params.id)
   }
 
   render() {
     return (
       <div>
+      <MyHeader/>
       {
         this.state.job && 
         <>
         <img src={this.state.job.company_logo} style={{'width':'200px', 'height':'200px'}}/>
-        <p>{this.state.job.company}</p>
-        <p>{this.state.job.location}</p>
-        <p>{this.state.job.company_url}</p>
+        <h2>{this.state.job.company}</h2>
+        <h4>{this.state.job.location}</h4>
+        <h6>{this.state.job.company_url}</h6>
+        <p dangerouslySetInnerHTML={{__html: this.state.job.description}} style={{'textAlign': 'left', 'padding': '1em'}}></p>
         </>
       }
         <h3></h3>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import Job from './Job'
-import {Link} from 'react-router-dom';
 
 class JobsGroup extends Component {
 
@@ -34,14 +33,13 @@ class JobsGroup extends Component {
             <div>
                 {
                     this.state.jobs.data && this.state.jobs.data.map((job, index) => 
-                        <Link to={`/jobDetails/${job.id}`} key={index}>
                         <Job 
                         id={job.id} 
                         img={job.company_logo} 
                         role={job.title} 
                         companyUrl={job.company_url} 
                         location={job.location}/>
-                        </Link>)
+                        )
                 }
                 
             </div>
