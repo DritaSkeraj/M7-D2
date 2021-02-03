@@ -18,13 +18,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 class Job extends React.Component {
 
-  componentDidUpdate(prevProps, prevState) {
-    // if(prevProps.jobSelected !== this.props.jobSelected){
-    //   this.setState({
-        
-    //   })
-    // }
-  }
   render(){
   return (
     <div className="job-wrapper">

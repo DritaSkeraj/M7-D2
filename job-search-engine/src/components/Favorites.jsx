@@ -28,12 +28,6 @@ class Favorites extends Component {
         return jobs;
     }
 
-    // componentDidUpdate(prevProps, prevState){
-    //     if(prevState.jobs.length != this.state.jobs.length){
-    //         this.state.jobs.map(job => <p>{job}</p>)
-    //     }
-    // }
-
     render() {
         return (
             <Container>
