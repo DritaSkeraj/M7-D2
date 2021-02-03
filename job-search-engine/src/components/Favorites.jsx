@@ -3,6 +3,7 @@ import MyHeader from './MyHeader';
 import Job from './Job';
 import axios from 'axios';
 import { connect } from "react-redux";
+import { Container } from 'react-bootstrap';
 
 const mapStateToProps = (state) => state;
 
@@ -13,47 +14,40 @@ class Favorites extends Component {
     }
 
     componentDidMount(){
-        this.props.favorites && this.props.favorites.map(job => {
-            axios.get(`/positions/${job}.json`)
-                .then((res) => {
-                    console.log("res from favs:::::::", res.data);
-                    this.setState({ jobs: [...this.state.jobs, res.data]})
-                });
+        this.props.favorites && this.props.favorites.map(id => {
+            this.getJobs(id)
         })
     }
-    
-    componentDidUpdate(prevProps, prevState){
-        if(prevState.jobs.length != this.state.jobs.length){
-            this.state.jobs.map(job => <p>{job}</p>)
-        }
+
+    getJobs = (id) => {
+        let jobs = axios.get(`/positions/${id}.json`)
+        .then(res => {
+            console.log("res from favs:::::::", res.data);
+            this.setState({ jobs: [...this.state.jobs, res.data]})
+        })
+        return jobs;
     }
+
+    // componentDidUpdate(prevProps, prevState){
+    //     if(prevState.jobs.length != this.state.jobs.length){
+    //         this.state.jobs.map(job => <p>{job}</p>)
+    //     }
+    // }
 
     render() {
         return (
-            <div>
-            {
-                setTimeout(() => {
-                    this.state.jobs && this.state.jobs.map(job =>
+            <Container>
+            { 
+                this.state.jobs && this.state.jobs.map((job, index) => 
                         <Job 
-                    id={job.id} 
-                    img={job.company_logo} 
-                    role={job.title} 
-                    companyUrl={job.company_url} 
-                    location={job.location}/>)
-                        
-                }, 1000)
-                //this.state.jobs && this.state.jobs.map(job => <p>{job}</p>)
-                // this.state.jobs && this.state.jobs.map((job, index) => ({
-                //     <Job 
-                //     id={job.id} 
-                //     img={job.company_logo} 
-                //     role={job.title} 
-                //     companyUrl={job.company_url} 
-                //     location={job.location}/>
-                    
-                // }))
+                        id={job.id} 
+                        img={job.company_logo} 
+                        role={job.title} 
+                        companyUrl={job.company_url} 
+                        location={job.location}/>
+                        )
             }     
-            </div>
+            </Container>
         );
     }
 }

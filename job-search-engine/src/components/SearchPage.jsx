@@ -16,7 +16,8 @@ class SearchPage extends Component {
     }
 
     style = {
-        'backgroundColor': '#2ec4b6',
+        'background': 'rgb(48,217,201)',
+        'background': 'radial-gradient(circle, rgba(35,203,187,1) 0%, rgba(68,138,131,1) 100%)',
         'color' : '#f7fff7',
         'padding': '2em 1em',
         'marginTop': '1em',

@@ -19,10 +19,12 @@ class MyHeader extends React.Component {
     return (
       <>
         <Navbar bg="light">
+          <Link to='/'>
           <Navbar.Brand href="#home">
             <img src={octocat} style={{ width: "60px", height: "60px" }} />
             Github Jobs
           </Navbar.Brand>
+          </Link>
           <Navbar.Collapse className="justify-content-end mr-3">
             <Navbar.Text>
               <Link to={`/favorites`}>
