@@ -14,7 +14,7 @@ class JobDetail extends Component {
         console.log("RESSSSSSSSSSSSS ", res)
         this.setState({ job: res.data})
       });
-    console.log('jjob detail params*********************', this.props.match.params.id)
+    // console.log('jjob detail params*********************', this.props.match.params.id)
   }
 
   render() {

@@ -1,43 +1,66 @@
+import React from 'react';
 import { Row, Col } from "react-bootstrap";
 import "../styles/Job.css";
 import { withRouter, Link } from "react-router-dom";
 import JobDetail from './JobDetail'
 import {ImStarEmpty} from 'react-icons/im'
+import { connect } from 'react-redux';
 
-function Job(props) {
+const mapStateToProps = (state) => state;
+
+const mapDispatchToProps = (dispatch) => ({
+  setFavorite: (id) => 
+    dispatch({
+      type: "ADD_FAVORITE",
+      payload: id,
+    }),
+})
+
+class Job extends React.Component {
+
+  componentDidUpdate(prevProps, prevState) {
+    // if(prevProps.jobSelected !== this.props.jobSelected){
+    //   this.setState({
+        
+    //   })
+    // }
+  }
+  render(){
   return (
     <div className="job-wrapper">
-      {/*<div style={{'display': 'none'}}>
-        <JobDetail id={props.id}/>
-      </div>*/}
+      
       <Row>
         <Col xs={3}>
-          <img src={props.img} className="img" />
+          <img src={this.props.img} className="img" />
         </Col>
         <Col>
           <Row>
-            <Link to={`/jobDetails/${props.id}`}>
-            <h6>{props.role}</h6>
+            <Link to={`/jobDetails/${this.props.id}`}>
+            <h6>{this.props.role}</h6>
             </Link>
           </Row>
           <Row>
             <Col xs={10}>
-              <p>Location: {props.location}</p>
+              <p>Location: {this.props.location}</p>
             </Col>
             <Col xs={10}>
               <p>
                 Company webpage:
-                <a href={props.companyUrl}>{props.companyUrl}</a>
+                <a href={this.props.companyUrl}>{this.props.companyUrl}</a>
               </p>
             </Col>
           </Row>
         </Col>
         <Col xs={2}>
-          <ImStarEmpty style={{'margin': '1em', 'color': 'rgb(50, 76, 83)', 'fontSize': '2em', 'textAlign': 'right'}}/>
+          <ImStarEmpty
+          style={{'margin': '1em', 'color': 'rgb(50, 76, 83)', 'fontSize': '2em', 'textAlign': 'right'}}
+          onClick={() => this.props.setFavorite(this.props.id)}
+          />
         </Col>
       </Row>
     </div>
   );
+    }
 }
 
-export default Job;
+export default connect(mapStateToProps, mapDispatchToProps)(Job);
