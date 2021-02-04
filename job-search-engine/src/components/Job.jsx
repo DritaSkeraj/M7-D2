@@ -14,11 +14,27 @@ const mapDispatchToProps = (dispatch) => ({
       type: "ADD_FAVORITE",
       payload: id,
     }),
+  removeFavorite: (id) => 
+    dispatch({
+      type: "REMOVE_FAVORITE",
+      payload: id,
+    })
 })
 
 class Job extends React.Component {
 
+  handleClick = (id) => {
+   const isFavorite = this.props.favorites.find(jobId => jobId == id);
+    if(isFavorite){
+      this.props.removeFavorite(id)
+    } else {
+      this.props.setFavorite(id)
+    }
+  }
+
   render(){
+    // console.log('job state:', this.state)
+    // console.log('job props', this.props)
   return (
     <div className="job-wrapper">
       
@@ -47,7 +63,7 @@ class Job extends React.Component {
         <Col xs={2}>
           <ImStarEmpty
           style={{'margin': '1em', 'color': 'rgb(50, 76, 83)', 'fontSize': '2em', 'textAlign': 'right'}}
-          onClick={() => this.props.setFavorite(this.props.id)}
+          onClick={() => this.handleClick(this.props.id)}
           />
         </Col>
       </Row>

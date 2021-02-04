@@ -19,6 +19,19 @@ class Favorites extends Component {
         })
     }
 
+    componentDidUpdate(prevProps){
+        console.log('prevProps of favorites:', prevProps.favorites, 
+                    'this props of favorites:', this.props.favorites);
+        
+        if(prevProps.favorites.length !== this.props.favorites.length){
+            console.log('not equal');
+            this.setState({jobs: []})
+            this.props.favorites.map(id => {
+                this.getJobs(id)
+            })
+        }
+    }
+
     getJobs = (id) => {
         let jobs = axios.get(`/positions/${id}.json`)
         .then(res => {
@@ -30,7 +43,7 @@ class Favorites extends Component {
 
     render() {
         return (
-            <Container>
+            <Container style={{'marginTop': '8em'}}>
             { 
                 this.state.jobs && this.state.jobs.map((job, index) => 
                         <Job 

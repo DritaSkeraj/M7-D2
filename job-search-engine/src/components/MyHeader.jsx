@@ -18,7 +18,7 @@ class MyHeader extends React.Component {
   render() {
     return (
       <>
-        <Navbar bg="light">
+        <Navbar bg="light" style={{'position': 'fixed', 'top': '0', 'width': '100%', 'z-index': '10'}}>
           <Link to='/'>
           <Navbar.Brand href="#home">
             <img src={octocat} style={{ width: "60px", height: "60px" }} />
