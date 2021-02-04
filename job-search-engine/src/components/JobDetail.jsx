@@ -14,7 +14,6 @@ class JobDetail extends Component {
         console.log("RESSSSSSSSSSSSS ", res)
         this.setState({ job: res.data})
       });
-    // console.log('jjob detail params*********************', this.props.match.params.id)
   }
 
   render() {
@@ -24,7 +23,7 @@ class JobDetail extends Component {
       {
         this.state.job && 
         <>
-        <img src={this.state.job.company_logo} style={{'width':'200px', 'height':'200px', 'marginTop': '1em'}}/>
+        <img src={this.state.job.company_logo} style={{'width':'200px', 'height':'200px', 'marginTop': '8em'}}/>
         <h2>{this.state.job.company}</h2>
         <h4>{this.state.job.location}</h4>
         <h6>{this.state.job.company_url}</h6>

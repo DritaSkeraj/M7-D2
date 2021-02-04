@@ -24,7 +24,6 @@ class JobsGroup extends Component {
     getJobs = (description, location) =>{
         let jobs = axios.get(`/positions.json?description=${description}&location=${location}`)
         .then(res => this.setState({jobs: res}))
-        .then(res => console.log("Fetch: ", res))
         return jobs;
     }
 

@@ -2,6 +2,7 @@ import React from "react";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
 
 export default class MySearch extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -22,6 +23,7 @@ export default class MySearch extends React.Component {
     this.props.parentCallback(this.state);
     event.preventDefault();
   };
+  
   render() {
     return (
       <>

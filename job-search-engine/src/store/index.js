@@ -1,14 +1,21 @@
-import { createStore } from "redux";
-import rootReducer from '../reducers';
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
+import favoriteReducer from '../reducers/favorites';
+import searchReducer from '../reducers/searched'
+import thunk from 'redux-thunk'
+
+const composedEnhacer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const intitialState = {
-    favorites: []
+    favorites: [],
+    searched: []
 }
+
+const bigReducer = combineReducers({ favorites: favoriteReducer, searched: searchReducer})
 
 export default function configureStore() {
     return createStore(
-        rootReducer,
+        bigReducer,
         intitialState,
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        composedEnhacer(applyMiddleware(thunk))
     )
 }

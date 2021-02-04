@@ -33,8 +33,7 @@ class Job extends React.Component {
   }
 
   render(){
-    // console.log('job state:', this.state)
-    // console.log('job props', this.props)
+    console.log('job state:', this.state, 'job props', this.props)
   return (
     <div className="job-wrapper">
       
